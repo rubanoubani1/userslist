@@ -5,37 +5,21 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import UserDetails from './UserDetails';
 import {useNavigate} from 'react-router-dom';
-import {Routes,Route,Link} from 'react-router-dom';
+
 
 const UsersList = (props) => {
 	const navigate = useNavigate();
-/*
-	const [urlUserRequest,setUrlUserRequest] = useState({
-		url:"",
-    	action:""
-	})
+	
 
-	const getUserDetail =(id)=>{
-
-		  setUrlUserRequest({
-			url:"https://jsonplaceholder.typicode.com/users/"+id,
-			action:'details'
-		  })
-		  
-		  return;
+		const getUser=(userId)=>{
+			return (
+				<div > <UserDetails userId={userId}/></div>
+			)
 		}
-*/	
-const navigateToDetails = (userId)=>{
-	console.log(userId);
+
+
 	
-	 navigate("/UserDetails/"+userId);
-	
-}
-
-
-
-	console.log(props);
-	let users = props.list.map((user) => {
+	let users = props.list.list.map((user) => {
 		let firstLetter = user.name.charAt(0);
 		
 		return (
@@ -54,8 +38,7 @@ const navigateToDetails = (userId)=>{
 					<Card.Text>{user.website}</Card.Text>
 					
 				</Card.Body>
-
-				<Button variant="primary" onClick={()=>UserDetails(user.id)}>More Details</Button>
+				<Button variant="primary" onClick={() => navigate('/UserDetails/'+user.id)}>More Details</Button>
 				
 				</Row> 
 			</Card>

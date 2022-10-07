@@ -23,10 +23,6 @@ function App() {
   
   useEffect(()=>{
 
-   
-      console.log("inside Effect url="+urlRequest.url);
-      ////
-      
       const fetchData = async () => {
         if(!urlRequest.url) {
           return;
@@ -50,33 +46,26 @@ function App() {
 
       fetchData();
 
-      ///
-    /*  let res =  fetch(urlRequest.url).then(res => res.json()).then(result =>setState({
-                   
-          list: result
-      })).catch(console.log);
-      return;*/
+      
   },[urlRequest]);
 
   let divArea=<div></div>;
-  
-  console.log('action is  = '+urlRequest.action+" "+urlRequest.url);
-  /*if(urlRequest.action==='details') {
     
-      divArea = <div > <UserDetails  list={state.list}/></div>
-      
-  }else{
-    divArea =   <div > <UsersList list={state.list} getUserDetail={getUserDetail}/></div>
-  }*/
-  ///
   divArea =   <div > <UsersList list={state.list}/></div>
 
-  ///
+  
+  let tempRender = <Routes>
+  <Route exact path="/" element={
+    <UsersList   list={state}/>
+    }/>
+    <Route path="/UserDetails/:userId" element ={<UserDetails />}/>
+    <Route path="*" element ={<Navigate to="/"/>}/>
+  </Routes>
 
   return (
     <div className="App">
       <header >
-    {divArea}
+    {tempRender}
       </header>
     </div>
   );
