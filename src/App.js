@@ -72,7 +72,7 @@ function App() {
   divArea =   <div > <UsersList list={state.list}/></div>
 
   ///
-if(state.UsersList)
+
   return (
     <div className="App">
       <header >
